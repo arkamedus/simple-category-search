@@ -3,8 +3,8 @@ Contributors: wokamoto
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=9S8AJCY7XB8F4&lc=JP&item_name=WordPress%20Plugins&item_number=wp%2dplugins&currency_code=JPY&bn=PP%2dDonationsBF%3abtn_donate_SM%2egif%3aNonHosted
 Tags: search, ajax, category
 Requires at least: 3.2
-Tested up to: 3.2.1
-Stable tag: 0.2.0
+Tested up to: 3.9
+Stable tag: 0.2.1
 
 You can choose (child) categories and see the posts belong to the chosen category with AJAX.
 
@@ -35,7 +35,7 @@ Confining to a specific category, put the category ID like below.
 The list box is wrapped by "div.categories_search", the search result is wrapped by "div.search_result".
 You can apply CSS as you like.
 
-e.g.) 
+e.g.)
 `.categories_search select{
   display:inline;
   margin-right: .25em;
@@ -43,9 +43,12 @@ e.g.)
   height:22px
 }`
 
-== Changelog == 
+== Changelog ==
 
-**0.2.0 - September 15, 2011**  
+**0.2.1 - April 29, 2014**
+Source code refactoring
+
+**0.2.0 - September 15, 2011**
 Initial release.
 
 == Upgrade Notice ==

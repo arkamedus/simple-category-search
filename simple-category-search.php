@@ -30,6 +30,7 @@ License:
 
 $simple_category_search = SimpleCategorySearch::get_instance();
 $simple_category_search->init();
+
 class SimpleCategorySearch
 {
     static $instance;
@@ -39,7 +40,9 @@ class SimpleCategorySearch
     const SELECT_CLASS = 'categories_search';
     const RESULT_CLASS = 'search_result';
 
-    private function __construct(){}
+    private function __construct()
+    {
+    }
 
     public static function get_instance()
     {
@@ -75,7 +78,7 @@ class SimpleCategorySearch
         if (count($categories) > 0) {
             $classname = 'parentcategory-' . ($parent === 0 ? 'none' : $parent);
             $output .= "<select id=\"category-{$parent}\" class=\"{$classname}\">";
-            $output .= '<option value="0" selected>All</option>';
+            $output .= '<option value="-0" selected>All</option>';
             foreach ($categories as $category) {
                 $output .= "<option value=\"{$category['term_id']}\">{$category['name']}</option>";
             }
@@ -228,7 +231,7 @@ class SimpleCategorySearch
         $result = FALSE;
 
         if (isset($_GET['parentcategory'])) {
-            $result = array();
+
             $parent = (int)$_GET['parentcategory'];
             $categories = $this->get_child_categories($parent);
             $result = array(
@@ -237,16 +240,19 @@ class SimpleCategorySearch
             );
 
         } else {
-            $query_string = "&posts_per_page=-1";
-            $result = array();
+            $query_string = "posts_per_page=100";
+
             $category_id = (int)$_GET['category'];
-            $query_string .= '&cat=' . $category_id;
+            if ($category_id !== 0) {
+                $query_string .= '&cat=' . $category_id;
+            }
             $posts = array();
 
-            $search = $_GET['search'] || "";
+            $search = $_GET['search'];
             if ($search !== "") {
                 $query_string .= '&s=' . $search;
             }
+
             query_posts($query_string);
             while (have_posts()) {
                 the_post();
